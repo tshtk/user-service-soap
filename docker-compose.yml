@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=db
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+  user-service:
+    build: .
+    environment:
+      - JDBC_URL=jdbc:postgresql://db:5432/db?user=app&password=pass
+    ports:
+      - '8080:8080'
+    restart: on-failure
+    depends_on:
+      - db

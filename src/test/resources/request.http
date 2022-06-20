@@ -1,0 +1,145 @@
+###
+NORMAL OPERATION
+
+### 1.1 Get all users
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                   xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getAllUsersRequest/>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+
+
+### 1.2 Get user by login
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getUserRequest>
+            <gs:login>JamesGosling</gs:login>
+        </gs:getUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+### 1.3 Create user
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:createUserRequest>
+            <gs:login>JurgenHoeller</gs:login>
+            <gs:name>Jurgen Hoeller</gs:name>
+            <gs:password>Spring2</gs:password>
+            <gs:roleName>SUPPORT</gs:roleName>
+        </gs:createUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+
+### 1.4 Delete user
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:deleteUserRequest>
+            <gs:login>JurgenHoeller</gs:login>
+        </gs:deleteUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+### 1.5 Update user
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:updateUserRequest>
+            <gs:login>RodJohnson</gs:login>
+            <gs:password>Spring3</gs:password>
+            <gs:roleName>CLIENT</gs:roleName>
+            <gs:roleName>SUPPORT</gs:roleName>
+        </gs:updateUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+
+###
+OPERATION WITH ERROR
+
+### 2.1 Get non existing user
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getUserRequest>
+            <gs:login>JamesGoslings</gs:login>
+        </gs:getUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+### 2.2 Create user with empty name, wrong password and not existing role
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:createUserRequest>
+            <gs:login>Superman</gs:login>
+            <gs:name></gs:name>
+            <gs:password>secret</gs:password>
+            <gs:roleName>SUPERMAN</gs:roleName>
+        </gs:createUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+
+### 2.3 Delete non existing user
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:deleteUserRequest>
+            <gs:login>Superman</gs:login>
+        </gs:deleteUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+### 2.4 Update user with non existing login, wrong password and not existing role
+POST http://localhost:8080/ws
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com.tshtk/userservice">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:updateUserRequest>
+            <gs:login>Superman</gs:login>
+            <gs:password>secret2</gs:password>
+            <gs:roleName>SUPERMAN</gs:roleName>
+        </gs:updateUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,15 @@
+### Common Files ###
+Thumbs.db*
+.DS_Store
+/out/
+/target/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### SpringBoot tests ###
+src/test/java/com/github/tshtk/userservice/ApplicationTests.java
+
