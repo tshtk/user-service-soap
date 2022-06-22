@@ -2,7 +2,7 @@
 #### Вариант 1
 
 1) Запуск базы данных (с тестовыми данными) в контейнере: docker-compose -f docker-compose-dev.yml up
-2) Запуск приложения с помощью maven: mvn clean compile
+2) Запуск приложения с помощью maven: mvn clean compile spring-boot:run
 
 #### Вариант 2
 
